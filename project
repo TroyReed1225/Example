@@ -1,0 +1,231 @@
+///@author Troy Reed
+///I pledge my word of honor that I have abided
+///by the CSN Academic Integrity Policy while completing
+///this assignment.
+///@file TroyReedcit130_pa7
+///@version 2021-03-14
+///@brief This assignment lets me demostrate my understanding of basic Java
+///constructs with loops, methods and arrays
+///@note The time taken to develop, write, test, and debug
+///solution: 10 hours
+
+
+// 1. Begin
+// 2. Set int method called getDealers with int dealers in parameter
+// 3.  get number of dealers and user variable name dealers
+// 4. while 1 is less than dealers or dealers is more than 20, Display error message and prompt user again for number of dealers
+// 5. return dealers and end method
+// 6. Set method string Method called getName
+// 7. Get string input and name variale "name"
+// 8. return name and End Method
+// 9. Set double method getSales with String name in parameter
+// 10. Get input from user and give it to variable "sale"
+// 11. while sale is less than 0, display error message and get input again for variable sale
+// 12. return sale and end Method
+// 13. Set double method called getCom with double sale in parameter
+// 14. set com = 0
+// 15. if 1 <= sale and sale <= 5000, com = sale * 10%
+// 16. else if 5000 < sale and sale <= 15000, com = sale * 15%
+// 17. else if sale > 15000, com = sale * 20%
+// 18. return com and end method
+// 19. Set double method called getTotal with double array sale in parameter
+// 20. set total = 0
+// 21. for int i, while i < length of sale, and +1 each loop, set total = total + sale index
+// 22. return com and end method
+// 23. set double method called getAve with int count and double total in parameter
+// 24. set avetage = total / count
+// 25. return average and end method
+// 26. set double method called getTotalCom with double array com in parameter
+// 27. set total = 0
+// 28. for int i, while i < length of sale, and +1 each loop, set total = total + com index
+// 29. return total and end method
+// 30. Set void method called display with int count, double array listSale, string array listName, double array listCom, double total, double average, and double comTotal in parameter
+// 31. display heading
+// 32. for int i, while i < count, and +1 each loop, display index of listSale, listName, and listCom
+// 33. display total, average, and comTotal
+// 34. End method
+// 35. Begin main method
+// 36. set i = 0
+// 37. set dealers = 0
+// 38. set name = " "
+// 39. set listSales[]
+// 40. set listNames[]
+// 41. set listCom[]
+// 42. set dealerCount = getDealers(dealers)
+// 43. for int i, while i < dealerCount - 1, and +1 each loop, get name from getNames then add to listNames, get sales from getSales(name) then add to lisrSales, and add getCom(sales) to listCom
+// 44. set total = getTotal(listSales)
+// 45. set average = getAve(dealerCount, total)
+// 46. set totalCom = getTotalcom(listCom)
+// 47. use display(dealerCount, listSales, listNames, listCom, total, average, totalCom)
+// 48. End
+
+import java.util.Scanner; //Scanner is in the java.util package
+
+public class TroyReedcit130_pa7
+{
+
+
+	// Method that gets and returns number of dealers
+	public static int getDealers(int dealers)
+	{
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("How mant dealers are there? ");
+		dealers = input.nextInt();
+		while(1 > dealers || dealers > 20)
+		{
+				System.out.print("INVALID NUMBER! How mant dealers are there? ");
+				dealers = input.nextInt();
+		}
+		return dealers;
+	}
+
+	// Method that gets input for name
+	public static String getNames()
+	{
+		Scanner input = new Scanner(System.in);
+
+		// prompts user for name
+		System.out.print("Enter the name: ");
+		String name = input.next();
+
+		return name;
+	}
+
+	// Method for getting sales
+	public static double getSales(String name)
+	{
+		Scanner input = new Scanner(System.in);
+
+		// prompts user for sale
+		System.out.print("Enter the sales of " + name + ": $");
+		double sale = input.nextDouble();
+
+		// makes sure sale ammount is not a negative number
+		while (sale < 0)
+		{
+			// displays error and prompts user again
+			System.out.println("INVALID NUMBER!");
+			System.out.println("Enter the sales: $");
+			sale = input.nextDouble();
+		}
+		return sale;
+
+	}
+
+	// Method for getting commision based on sale in array
+	public static double getCom( double sale)
+	{
+		double com = 0;
+
+		// commision is based on current sale in array
+		if (1 <= sale && sale <= 5000)
+		{
+			com = sale * 0.1;  // calculates 10%
+		}
+		else if (5000 < sale && sale <= 15000)
+		{
+			com = sale * 0.15;  // calculates 15%
+		}
+		else if (sale > 15000)
+		{
+			com = sale * 0.2;  // calculates 20%
+		}
+		return com;
+	}
+
+	// Method used to add all sales together
+	public static double getTotal(double[] sale)
+	{
+		double total = 0;
+		for (int i = 0; i < sale.length; i++)
+		{
+			total = total + sale[i];
+		}
+	return total;
+	}
+
+	// Method used to determine average of all total sales
+	public static double getAve(int count, double total)
+	{
+		double average = total / count;
+		return average;
+	}
+
+	// Method used for getting total commisions
+	public static double getTotalCom(double[] com)
+	{
+		double total = 0;
+		for(int i = 0; i < com.length - 1; i++)
+		{
+			total = total + com[i];
+		}
+	return total;
+	}
+
+	// Method that displays
+	public static void display(int count, double[] listSale, String[] listName, double[] listCom, double total, double average, double comTotal)
+	{
+		System.out.println("Dealers    Sales    Commissions");
+
+		// displays each array from the lists
+		for(int i = 0; i < count; i++)
+		{
+			System.out.printf(listName[i]);
+			System.out.printf("    %.2f", listSale[i]);
+			System.out.printf("    %.2f", listCom[i]);
+			System.out.println(" ");
+		}
+
+		// displays final totals
+		System.out.println(" ");
+		System.out.printf("Total sales: $%.2f", total);
+		System.out.println(" ");
+		System.out.printf("Total average sales: $%.2f", average);
+		System.out.println(" ");
+		System.out.printf("Total in commisions: $%.2f", comTotal);
+		System.out.println(" ");
+	}
+
+
+	// main method
+	public static void main(String[] args)
+	{
+		// set variables
+		int i = 0;
+		int dealers = 0;
+		String name = " ";
+		double sales = 0;
+		double[] listSales = new double [20];
+		String[] listNames = new String [20];
+		double[] listCom = new double [20];
+
+		// get dealerCount from method
+		int dealerCount = getDealers(dealers);
+
+		// adds array to lists based on dealerCount
+		for(i = 0; i <= dealerCount - 1; i++)
+		{
+
+			name = getNames();
+			listNames[i] = name;
+
+			sales = getSales(name);
+			listSales[i] = sales;
+
+			listCom[i] = getCom(sales);
+
+		}
+
+		double total = getTotal(listSales); // Obtain total from array
+
+		double average = getAve(dealerCount, total);  // obtain average of total sales
+
+		double totalCom = getTotalCom(listCom);  // Obtain total comissions
+
+		// displays final sales
+		display(dealerCount, listSales, listNames, listCom, total, average, totalCom);
+
+
+	}
+}
